@@ -1,0 +1,7 @@
+{
+    "title": "Timed Reward!",
+    "timeout": 21600000,
+    "range": 101,
+    "collectColor": "00ff00",
+    "collectedColor": "ff0000"
+}
