@@ -1,7 +1,11 @@
 {
-    "title": "Timed Reward!",
-    "timeout": 21600000,
-    "range": 101,
-    "collectColor": "00ff00",
-    "collectedColor": "ff0000"
+    "discord": "discord.js",
+    "fs": "fs",
+    "ms": "parse-ms",
+    "daily": "../settings/daily.json",
+    "pay": "../settings/pay.json",
+    "money": "../money.json",
+    "moneySub": "./money.json",
+    "cooldown": "../cooldown.json",
+    "cooldownSub": "./cooldown.json"
 }

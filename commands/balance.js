@@ -1,5 +1,6 @@
-const fs = require("fs");
-const money = require("../money.json")
+const settings = require("../settings.json")
+const fs = require(settings.fs);
+const money = require(settings.money)
 
 module.exports.run = async (client, message, args) => {
     let user;
@@ -14,7 +15,7 @@ module.exports.run = async (client, message, args) => {
             name: client.users.cache.get(user.id).tag,
             money: 0
         }
-        fs.writeFile("./money.json", JSON.stringify(money), (err) => {
+        fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
             if (err) console.log(err);
         });
     }
