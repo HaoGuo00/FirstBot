@@ -3,6 +3,7 @@ node_modules/
 
 # Config file
 /config.json
+writeFile/
 
 # yml files
 *.yml
