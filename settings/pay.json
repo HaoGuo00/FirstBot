@@ -4,5 +4,5 @@
     "noUser": "Sorry, couldn't fint that user",
     "noAmount": "Please specify the amount you want to pay.",
     "noMoney": "Sorry you do not have any money.",
-    "noEnoghMoney": "You do not have that much money"
+    "noEnoughMoney": "You do not have that much money"
 }

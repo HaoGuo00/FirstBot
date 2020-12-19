@@ -10,9 +10,9 @@ module.exports.run = async (client, message, args) => {
     if (!user) return message.reply(pay.noUser);
     //Check send amount
     if (!args[1]) return message.reply(pay.noAmount);
-    // Check if user have enogh money or wants to send negative 
+    // Check if user have enough money or wants to send negative 
     if (!money[message.author.id]) return message.reply(pay.noMoney);
-    if (parseInt(args[1]) > money[message.author.id].money) return message.reply(pay.noEnoghMoney);
+    if (parseInt(args[1]) > money[message.author.id].money) return message.reply(pay.noEnoughMoney);
     if (parseInt(args[1]) < pay.minPayAmount) return message.reply(`You can not pay lesser than $${pay.minPayAmount}.`);
 
     //If recieve user do not have a account
