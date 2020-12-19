@@ -1,1 +1,8 @@
+# NodeJS
+node_modules/
+
+# Config dile
 /config.json
+
+# yml files
+*.yml

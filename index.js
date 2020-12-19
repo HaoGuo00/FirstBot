@@ -61,7 +61,11 @@ client.on('message', message => {
             break;
         case "nt":
             if (taggedUser == null) return;
-            message.channel.send(`${taggedUser}是脑瘫`)
+            if (message.mentions.users.first().username.includes("QAQ")) {
+                message.reply("脑瘫闭嘴");
+            } else {
+                message.channel.send(`${taggedUser}是脑瘫`);
+            }
             break;
     }
 })
