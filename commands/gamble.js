@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
     // Check the amount the player bets
     if (!args[0]) return message.reply(gamble.noAmount);
     // All in
-    if(args[0].toLowerCase() == gamble.all) args[0] = money[message.author.id].money;
+    if (args[0].toLowerCase() == gamble.all) args[0] = money[message.author.id].money;
     // Check if it is a number
     try {
         bet = parseFloat(args[0]);
@@ -39,9 +39,9 @@ module.exports.run = async (client, message, args) => {
         });
         return message.reply(`${gamble.youWin} ${gamble.newBal} $${money[message.author.id].money}`);
     }
-}
+};
 
 module.exports.help = {
     name: "gamble",
-    aliases: ["bet"]
-}
+    aliases: ["bet"],
+};

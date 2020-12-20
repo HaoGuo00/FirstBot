@@ -14,9 +14,9 @@ client.aliases = new Discord.Collection();
 
 // Read commands folder
 fs.readdir("./commands/", (err, files) => {
-    if(err) console.log(err);
+    if (err) console.log(err);
 
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    let jsfile = files.filter((f) => f.split(".").pop() === "js");
     if (jsfile.length <= 0) {
         console.log("Couldn't find any commands!");
         return;
@@ -27,19 +27,19 @@ fs.readdir("./commands/", (err, files) => {
         console.log(`${f} loaded!`);
         client.commands.set(props.help.name, props);
 
-        props.help.aliases.forEach(alias => {
+        props.help.aliases.forEach((alias) => {
             client.aliases.set(alias, props.help.name);
-        })
-    })
-})
+        });
+    });
+});
 
 // Bot online message and activity message
-client.on("ready",async () => {
+client.on("ready", async () => {
     console.log(`${client.user.username} is online on ${client.guilds.cache.size} servers!`);
     client.user.setActivity(`with ${client.guilds.cache.size} servers!`);
-})
+});
 
-client.on("message", async message => {
+client.on("message", async (message) => {
     // Check channel type
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
@@ -63,15 +63,13 @@ client.on("message", async message => {
     }
     try {
         command.run(client, message, args);
-    } catch (e){
+    } catch (e) {
         return;
     }
-})
+});
 
 // Log our bot in using the token from https://discord.com/developers/applications
 client.login(config.token);
-
-
 
 // /**
 //  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
