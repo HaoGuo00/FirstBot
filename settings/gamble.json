@@ -1,4 +1,5 @@
 {
+    "minBet": 0,
     "maxBet": 10000,
     "noMoney": "You do not have any money.",
     "noAmount": "Please specify a bet.",
@@ -6,6 +7,7 @@
     "noEnoughMoney": "You do not have that much money.",
     "all": "all",
     "max": "The maximun bet is",
+    "min": "The minimum bet is",
     "chances": ["win", "lose"],
     "lose": "lose",
     "youLose": "You lose.",

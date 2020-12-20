@@ -1,8 +1,8 @@
 {
     "title": "Timed Reward!",
     "context": "time reward",
-    "timeout": 21600000,
-    "range": 101,
+    "timeout": 10800000,
+    "range": 201,
     "collectColor": "00ff00",
     "collectedColor": "ff0000"
 }
