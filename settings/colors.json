@@ -3,12 +3,12 @@
     "white": "#ffffff",
     "gray": "#969696",
     "brown": "#522700",
-    "gold": "#000000",
-    "green": "#000000",
-    "red": "#000000",
-    "blue": "#000000",
-    "purple": "#000000",
-    "yellow": "#000000",
-    "orange": "#000000",
-    "cream": "#000000"
+    "gold": "#d4af37",
+    "green": "#00ff44",
+    "red": "#ff0000",
+    "blue": "#00a2ff",
+    "purple": "#b700ff",
+    "yellow": "#ffff00",
+    "orange": "#ff7b00",
+    "cream": "#fffdd0"
 }

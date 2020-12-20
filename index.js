@@ -1,12 +1,13 @@
 // Packages and files
+const settings = require("./settings.json");
 // Import the discord.js module
-const Discord = require("discord.js");
+const Discord = require(settings.discord);
 // Create an instance of a Discord client
 const client = new Discord.Client({ disableEveryone: true });
 // Import config file
-const config = require("./config.json");
+const config = require(settings.configSub);
 // Read folder
-const fs = require("fs");
+const fs = require(settings.fs);
 
 // Bot commands
 client.commands = new Discord.Collection();
@@ -44,8 +45,14 @@ client.on("message", async (message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
 
-    // Set prefix
-    const prefix = config.prefix;
+    // Get the prefix
+    let prefixes = JSON.parse(fs.readFileSync(settings.prefixesSub, settings.encoding));
+    if (!prefixes[message.guild.id]) {
+        prefixes[message.guild.id] = {
+            prefix: config.prefix,
+        };
+    }
+    let prefix = prefixes[message.guild.id].prefix;
 
     // Check prefix, Define args & command
     if (!message.content.startsWith(prefix)) return;
