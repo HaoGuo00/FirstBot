@@ -3,6 +3,7 @@
     "fs": "fs",
     "ms": "parse-ms",
     "daily": "../settings/daily.json",
+    "gamble": "../settings/gamble.json",
     "pay": "../settings/pay.json",
     "money": "../writeFile/money.json",
     "moneySub": "./writeFile/money.json",

@@ -1,6 +1,6 @@
-const settings = require("../settings.json")
+const settings = require("../settings.json");
 const fs = require(settings.fs);
-const money = require(settings.money)
+const money = require(settings.money);
 
 module.exports.run = async (client, message, args) => {
     let user;
@@ -13,17 +13,17 @@ module.exports.run = async (client, message, args) => {
     if (!money[user.id]) {
         money[user.id] = {
             name: client.users.cache.get(user.id).tag,
-            money: 0
-        }
+            money: 0,
+        };
         fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
             if (err) console.log(err);
         });
     }
 
-    return message.channel.send(`${client.users.cache.get(user.id).username} has $${money[user.id].money}.`)
-}
+    return message.channel.send(`${client.users.cache.get(user.id).username} has $${money[user.id].money}.`);
+};
 
 module.exports.help = {
     name: "balance",
-    aliases: ["bal", "money"]
-}
+    aliases: ["bal", "money"],
+};

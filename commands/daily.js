@@ -8,7 +8,7 @@ const cooldowns = require(settings.cooldown);
 
 module.exports.run = async (client, message, args) => {
     let timeout = daily.timeout;
-    let reward = Math.floor(Math.random() * daily.range);;
+    let reward = Math.floor(Math.random() * daily.range);
 
     let embed = new Discord.MessageEmbed();
     embed.setTitle(daily.title);
@@ -16,8 +16,8 @@ module.exports.run = async (client, message, args) => {
     if (!money[message.author.id]) {
         money[message.author.id] = {
             name: client.user.cache.get(message.author.id).tag,
-            money: reward
-        }
+            money: reward,
+        };
         fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
             if (err) console.log(err);
         });
@@ -25,8 +25,8 @@ module.exports.run = async (client, message, args) => {
         if (!cooldowns[message.author.id]) {
             cooldowns[message.author.id] = {
                 name: client.users.cache.get(message.author.id).tag,
-                daily: Date.now()
-            }
+                daily: Date.now(),
+            };
             fs.writeFile(settings.cooldownSub, JSON.stringify(cooldowns), (err) => {
                 if (err) console.log(err);
             });
@@ -43,8 +43,8 @@ module.exports.run = async (client, message, args) => {
         if (!cooldowns[message.author.id]) {
             cooldowns[message.author.id] = {
                 name: client.users.cache.get(message.author.id).tag,
-                daily: Date.now()
-            }
+                daily: Date.now(),
+            };
             fs.writeFile(settings.cooldownSub, JSON.stringify(cooldowns), (err) => {
                 if (err) console.log(err);
             });
@@ -76,9 +76,9 @@ module.exports.run = async (client, message, args) => {
             }
         }
     }
-}
+};
 
 module.exports.help = {
     name: "daily",
-    aliases: []
-}
+    aliases: [],
+};

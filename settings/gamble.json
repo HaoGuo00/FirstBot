@@ -1,0 +1,14 @@
+{
+    "maxBet": 10000,
+    "noMoney": "You do not have any money.",
+    "noAmount": "Please specify a bet.",
+    "notANumber": "You can only enter whole numbers.",
+    "noEnoughMoney": "You do not have that much money.",
+    "all": "all",
+    "max": "The maximun bet is",
+    "chances": ["win", "lose"],
+    "lose": "lose",
+    "youLose": "You lose.",
+    "youWin": "You Win.",
+    "newBal": "New Balance:"
+}
