@@ -1,0 +1,5 @@
+{
+    "max": 99,
+    "amount": "How many messages do you want to clear?",
+    "timeout": 300
+}

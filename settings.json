@@ -5,6 +5,7 @@
     "encoding": "utf8",
     "config": "../config.json",
     "configSub": "./config.json",
+    "clearSettings": "../settings/clear.json",
     "colors": "../settings/colors.json",
     "dailySettings": "../settings/daily.json",
     "gambleSettings": "../settings/gamble.json",
@@ -17,6 +18,9 @@
     "cooldownSub": "./writeFile/cooldown.json",
     "prefixes": "../writeFile/prefixes.json",
     "prefixesSub": "./writeFile/prefixes.json",
+
     "noPermission": "You do not have the permission to do that!",
-    "managePrefix": "MANAGE_GUILD"
+    "err": "An error occurred!",
+    "manageGuild": "MANAGE_GUILD",
+    "manageMessage": "MANAGE_MESSAGES"
 }
