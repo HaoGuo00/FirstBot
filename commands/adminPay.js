@@ -4,21 +4,17 @@ const money = require(settings.money);
 const fs = require(settings.fs);
 
 module.exports.run = async (client, message, args) => {
-    if (isNaN(parseInt(args[1]))) return message.channel.send(paySettings.wrongOrder);
+    // If user is owner
+    if (message.author.id != paySettings.ownerId) return message.reply(settings.noPermission);
+    if (isNaN(parseInt(args[1])))
+        // Check if the user call the function correctly
+        return message.channel.send(paySettings.wrongOrder);
     let user = message.mentions.members.first() || bot.users.cache.get(args[0]);
-    //Check target user
+    // Check target user
     if (!user) return message.reply(paySettings.noUser);
-    //Check send amount
+    // Check send amount
     if (!args[1]) return message.reply(paySettings.noAmount);
-    // Check money account
-    if (!money[message.author.id]) return message.reply(paySettings.noMoney);
-    // Check self pay
-    if (user.id == message.author.id) return message.reply(paySettings.selfPay);
-    // Check if user have enough money or wants to send negative
-    if (parseInt(args[1]) > money[message.author.id].money) return message.reply(paySettings.noEnoughMoney);
-    if (parseInt(args[1]) < paySettings.minPayAmount) return message.reply(`You can not pay lesser than $${paySettings.minPayAmount}.`);
-
-    //If recieve user do not have a account
+    // If recieve user do not have a account
     if (!money[user.id]) {
         money[user.id] = {
             name: client.users.cache.get(user.id).tag,
@@ -32,17 +28,15 @@ module.exports.run = async (client, message, args) => {
     } else {
         // Target user
         money[user.id].money += parseInt(args[1]);
-        // Author
-        money[message.author.id].money -= parseInt(args[1]);
-        //Write to file
+        // Write to file
         fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
             if (err) console.log(err);
         });
     }
-    return message.channel.send(`${message.author.username} payed $${args[1]} to ${client.users.cache.get(user.id).username}.`);
+    return message.channel.send(`${message.author.username} admin payed $${args[1]} to ${client.users.cache.get(user.id).username}.`);
 };
 
 module.exports.help = {
-    name: "pay",
-    aliases: ["transfer"],
+    name: "adminpay",
+    aliases: ["ap", "give"],
 };
