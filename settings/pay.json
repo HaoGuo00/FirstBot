@@ -4,5 +4,8 @@
     "noUser": "Sorry, couldn't fint that user",
     "noAmount": "Please specify the amount you want to pay.",
     "noMoney": "Sorry you do not have any money.",
-    "noEnoughMoney": "You do not have that much money"
+    "noEnoughMoney": "You do not have that much money",
+    "selfPay": "You can not pay yourself!",
+
+    "ownerId": "223488600216567808"
 }
