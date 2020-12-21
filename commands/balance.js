@@ -1,26 +1,47 @@
 const settings = require("../settings.json");
-const fs = require(settings.fs);
-const money = require(settings.money);
+const mongoose = require(settings.mongoose);
+const config = require(settings.config);
+
+//Connect to DB
+mongoose.connect(config.mongoPass, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+// Models
+const Data = require(settings.dataFile);
 
 module.exports.run = async (client, message, args) => {
     let user;
     if (!args[0]) {
         user = message.author;
     } else {
-        user = message.mentions.users.first() || client.users.get(arg[0]);
+        user = message.mentions.users.first() || client.users.cache.get(arg[0]);
     }
 
-    if (!money[user.id]) {
-        money[user.id] = {
-            name: client.users.cache.get(user.id).tag,
-            money: 0,
-        };
-        fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
+    Data.findOne(
+        {
+            userID: user.id,
+        },
+        (err, data) => {
             if (err) console.log(err);
-        });
-    }
-
-    return message.channel.send(`${client.users.cache.get(user.id).username} has $${money[user.id].money}.`);
+            // If data not exist
+            if (!data) {
+                const newData = new Data({
+                    name: client.users.cache.get(user.id).username,
+                    userID: user.id,
+                    lb: "all",
+                    money: 0,
+                    daily: 0,
+                });
+                // Save data
+                newData.save().catch((err) => console.log(err));
+                return message.channel.send(`${client.users.cache.get(user.id).username} has $0.`);
+            } else {
+                return message.channel.send(`${client.users.cache.get(user.id).username} has $${data.money}.`);
+            }
+        }
+    );
 };
 
 module.exports.help = {
