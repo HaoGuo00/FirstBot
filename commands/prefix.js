@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
     }
     let prefix = prefixes[message.guild.id].prefix;
     // Check permission
-    if (!message.member.hasPermission(settings.managePrefix)) return message.reply(settings.noPermission);
+    if (!message.member.hasPermission(settings.manageGuild)) return message.reply(settings.noPermission);
     // No argument is given
     if (!args[0]) return message.reply(prefixSettings.noPrefix);
     // New prefix
