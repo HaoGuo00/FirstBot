@@ -1,39 +1,52 @@
 const settings = require("../settings.json");
 const paySettings = require(settings.paySettings);
-const money = require(settings.money);
-const fs = require(settings.fs);
+const mongoose = require(settings.mongoose);
+const config = require(settings.config);
+
+//Connect to DB
+mongoose.connect(config.mongoPass, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+// Models
+const Data = require(settings.dataFile);
 
 module.exports.run = async (client, message, args) => {
-    // If user is owner
+    // Check if author is owner
     if (message.author.id != paySettings.ownerId) return message.reply(settings.noPermission);
-    if (isNaN(parseInt(args[1])))
-        // Check if the user call the function correctly
-        return message.channel.send(paySettings.wrongOrder);
+    // Check order
+    if (isNaN(parseInt(args[1]))) return message.channel.send(paySettings.wrongOrder);
+    // Define user
     let user = message.mentions.members.first() || bot.users.cache.get(args[0]);
-    // Check target user
+    //Check target user
     if (!user) return message.reply(paySettings.noUser);
-    // Check send amount
-    if (!args[1]) return message.reply(paySettings.noAmount);
-    // If recieve user do not have a account
-    if (!money[user.id]) {
-        money[user.id] = {
-            name: client.users.cache.get(user.id).tag,
-            money: parseInt(args[1]),
-        };
-        money[message.author.id].money -= parseInt(args[1]);
-        //Write to file
-        fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
-            if (err) console.log(err);
-        });
-    } else {
-        // Target user
-        money[user.id].money += parseInt(args[1]);
-        // Write to file
-        fs.writeFile(settings.moneySub, JSON.stringify(money), (err) => {
-            if (err) console.log(err);
-        });
-    }
-    return message.channel.send(`${message.author.username} admin payed $${args[1]} to ${client.users.cache.get(user.id).username}.`);
+    // Find in database
+    Data.findOne({ userID: user.id }, (err, userData) => {
+        if (err) console.log(err);
+        //Check send amount
+        if (!args[1]) return message.reply(paySettings.noAmount);
+        if (args[1] != Math.floor(args[1])) return message.reply(paySettings.noNumber);
+        // If user data not excist
+        if (!userData) {
+            // Create a new profile
+            const newData = new Data({
+                name: client.users.cache.get(user.id).username,
+                userID: user.id,
+                lb: "all",
+                money: parseInt(args[1]),
+                daily: 0,
+            });
+            // Save data
+            newData.save().catch((err) => console.log(err));
+        } else {
+            // Add to user
+            userData.money += parseInt(args[1]);
+            // Save data
+            userData.save().catch((err) => console.log(err));
+        }
+        return message.channel.send(`${message.author.username} admin payed $${args[1]} to ${client.users.cache.get(user.id).username}.`);
+    });
 };
 
 module.exports.help = {

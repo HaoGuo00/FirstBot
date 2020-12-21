@@ -6,6 +6,7 @@
     "noMoney": "Sorry you do not have any money.",
     "noEnoughMoney": "You do not have that much money",
     "selfPay": "You can not pay yourself!",
+    "noNumber": "Please enter only whole numbers",
 
     "ownerId": "223488600216567808"
 }

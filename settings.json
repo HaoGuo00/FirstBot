@@ -14,10 +14,7 @@
     "hugSettings": "../settings/hug.json",
     "paySettings": "../settings/pay.json",
     "prefixSettings": "../settings/prefix.json",
-    "money": "../writeFile/money.json",
-    "moneySub": "./writeFile/money.json",
-    "cooldown": "../writeFile/cooldown.json",
-    "cooldownSub": "./writeFile/cooldown.json",
+
     "prefixes": "../writeFile/prefixes.json",
     "prefixesSub": "./writeFile/prefixes.json",
 

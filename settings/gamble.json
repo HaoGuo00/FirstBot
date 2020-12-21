@@ -1,5 +1,5 @@
 {
-    "minBet": 0,
+    "minBet": 1,
     "maxBet": 10000,
     "noMoney": "You do not have any money.",
     "noAmount": "Please specify a bet.",
